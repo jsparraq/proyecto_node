@@ -1,0 +1,22 @@
+
+<div>
+    <h1>Crear curso</h1>
+
+    <form action="/crearCurso" method="post">
+        <p>Nombre</p>
+        <input type="text" name="nombre" required>
+        <p>Id</p>
+        <input type="number" name="id" required>
+        <p>Descripción</p>
+        <input type="text" name="descripcion" required>
+        <p>Valor</p>
+        <input type="number" name="valor" required>
+        <br><br>
+        <p>Tipo</p>
+        <select name="tipo">
+            <option value="aspirante">Virtual</option>
+            <option value="interesado">Presencial</option>
+        </select>
+        <button>Crear</button>
+    </form>
+</div>

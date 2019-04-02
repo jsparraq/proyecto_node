@@ -1,0 +1,27 @@
+<div>
+    <h2>
+        nombre de los cursos disponibles para eliminar:
+    </h2>
+    {{#with (mostrarInscripciones cursoID)}}
+    <div>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th></th>
+
+            </tr>
+            {{#each this}}
+            <tr>
+                <th>{{this.nombre}}</th>
+                <th>
+                    <form action="" method="post">
+                        <input name="cursoID" type="hidden" value="{{this.id}}">
+                        <button>eliminar</button>
+                    </form>
+                </th>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    {{/with}}
+</div>

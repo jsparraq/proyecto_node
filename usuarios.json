@@ -1,0 +1,30 @@
+[
+    {
+        "cedula": 100,
+        "nombre": "simon",
+        "correo": "szea@unal.edu.co",
+        "telefono": 302,
+        "tipo": "coordinador"
+    },
+    {
+        "cedula": 10,
+        "nombre": "zea",
+        "correo": "szeag@asdf",
+        "telefono": 123,
+        "tipo": "docente"
+    },
+    {
+        "cedula": 12,
+        "nombre": "szeag",
+        "correo": "szea@unal.edu.co",
+        "telefono": 4123,
+        "tipo": "interesado"
+    },
+    {
+        "cedula": 1234,
+        "nombre": "szeag",
+        "correo": "szea@unal.edu.co",
+        "telefono": 3242245,
+        "tipo": "aspirante"
+    }
+]

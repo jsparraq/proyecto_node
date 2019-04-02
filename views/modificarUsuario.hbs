@@ -1,0 +1,48 @@
+    <h2>
+        Usuarios:
+    </h2>
+    {{#with (modificarUsuario cedula nombre correo telefono tipo)}}
+    <div>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Cedula</th>
+                <th>Correo</th>
+                <th>Telefono</th>
+                <th>Tipo</th>
+
+            </tr>
+            {{#each this}}
+            <tr>
+                <th>{{this.nombre}}</th>
+                <th>{{this.cedula}}</th>
+                <th>{{this.correo}}</th>
+                <th>{{this.telefono}}</th>
+                <th>{{this.tipo}}</th>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    {{/with}}
+    <div>
+        <h2>Ingrese los datos de el usuario que quiere modificar</h2>
+        <p>la cedula tiene que existir previamente</p>
+        <form action="" method="post">
+        <p>Cedula</p>
+        <input type="number" name="cedula">
+        <p>Nombre</p>
+        <input type="text" name="nombre">
+        <p>Correo</p>
+        <input type="email" name="correo">
+        <p>Telefono</p>
+        <input type="number" name="telefono">
+        <p>Tipo</p>
+        <select name="tipo">
+            <option value="aspirante">Aspirante</option>
+            <option value="interesado">Interesado</option>
+            <option value="docente">Docente</option>
+        </select>
+        <br><br>
+        <button>Modificar</button>
+    </form>
+    </div>

@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "nombre": "Fisica",
+        "descripcion": "Es una amteria importante para el conocimeinto general de las personas",
+        "valor": 200000,
+        "modalidad": "Virtual",
+        "intensidad": 42,
+        "estado": "cerrado"
+    },
+    {
+        "id": 2,
+        "nombre": "Ingles",
+        "descripcion": "Es una amteria importante para habalr en el extragero",
+        "valor": 203300,
+        "modalidad": "Presencial",
+        "intensidad": 50,
+        "estado": "cerrado"
+    },
+    {
+        "id": 3,
+        "nombre": "Español",
+        "descripcion": "Es una amteria importante para hablar",
+        "valor": 255500,
+        "modalidad": "Virtual",
+        "intensidad": 55,
+        "estado": "disponible"
+    },
+    {
+        "id": 4,
+        "nombre": "Español",
+        "descripcion": "Es una amteria importante para hablar",
+        "valor": 255500,
+        "modalidad": "Virtual",
+        "intensidad": 55,
+        "estado": "cerrado"
+    }
+]

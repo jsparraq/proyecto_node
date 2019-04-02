@@ -1,0 +1,32 @@
+<div>
+    <h2>
+        nombre de los cursos disponibles para Inscribir:
+    </h2>
+    {{#with (mostrarCursos )}}
+    <div>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>descripción</th>
+                <th>Valor</th>
+                <th></th>
+
+            </tr>
+            {{#each this}}
+            <tr>
+                <th>{{this.nombre}}</th>
+                <th>{{this.descripcion}}</th>
+                <th>{{this.valor}}</th>
+                <th>
+                    <form action="/inscrito" method="post">
+                        <input name="cursoID" type="hidden" value="{{this.id}}">
+                        <button>Inscribir</button>
+                    </form>
+                </th>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    {{/with}}
+
+</div>

@@ -1,0 +1,29 @@
+<div>
+    <h1>Registro de Usuarios</h1>
+
+    <form action="/registro" method="post">
+        <p>Cedula</p>
+        <input type="number" name="cedula">
+        <p>Nombre</p>
+        <input type="text" name="nombre">
+        <p>Correo</p>
+        <input type="email" name="correo">
+        <p>Telefono</p>
+        <input type="number" name="telefono">
+        <p>Tipo</p>
+        <select name="tipo">
+            <option value="aspirante">Aspirante</option>
+            <option value="interesado">Interesado</option>
+        </select>
+        <br><br>
+        <button>Registrar</button>
+    </form>
+</div>
+<div>
+    <form action="/login" method="post">
+        <h2>Ingrese la cedula para visualizar las opciones</h2>
+        <input type="number" name="cedula">
+        <button>Login</button>
+    </form>
+</div>
+

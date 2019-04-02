@@ -1,0 +1,49 @@
+{{#menuInteresado cedula}}
+<div>
+    <form action="/cursos" method="post">
+        <button>Visualizar Cursos</button>
+    </form>
+</div>
+{{/menuInteresado}}
+{{#menuAspirante cedula}}
+<div>
+    <form action="/incribir" method="post">
+        <button>Inscribir</button>
+    </form>
+</div>
+<div>
+    <form action="/eliminar" method="post">
+        <button>Eliminar</button>
+    </form>
+</div>
+{{/menuAspirante}}
+{{#menuCoordinador cedula}}
+<div>
+    <form action="/cursos" method="post">
+        <button>Visualizar Cursos</button>
+    </form>
+</div>
+<div>
+    <form action="/crear" method="post">
+        <button>Crear cursos</button>
+    </form>
+</div>
+<div>
+    <form action="/inscritosCursos" method="post">
+        <button>Cerrar Curso</button>
+    </form>
+</div>
+<div>
+    <form action="/desinscribir" method="post">
+        <button>Eliminar Personas de Cursos</button>
+    </form>
+</div>
+<div>
+    <form action="/modificarUsuario" method="post">
+        <button>Modificar Usuario</button>
+    </form>
+</div>
+{{/menuCoordinador}}
+{{#menuSinRegistro cedula}}
+<h3>No estas registrado</h3>
+{{/menuSinRegistro}}

@@ -1,0 +1,38 @@
+<div>
+    <h2>
+        nombre de los cursos disponibles:
+    </h2>
+    {{#with (mostrarCursos )}}
+    <div>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>descripción</th>
+                <th>Valor</th>
+
+            </tr>
+            {{#each this}}
+            <tr>
+                <th>{{this.nombre}}</th>
+                <th>{{this.descripcion}}</th>
+                <th>{{this.valor}}</th>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    <div>
+        <form action="" method="post">
+            <input type="hidden" name="cedula" value={{cedula}}>
+            <select name="detalle">
+                {{#each this}}
+                <option value="{{this.id}}">{{this.nombre}}</option>
+                {{/each}}
+            </select>
+            <button>buscar</button>
+        </form>
+    </div>
+    {{/with}}
+    <div>
+        <pre>{{detalleCurso detalle}}</pre>
+    </div>
+</div>

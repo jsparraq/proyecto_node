@@ -1,0 +1,32 @@
+<div>
+    <h2>
+        Estudiantes que han escrito
+    </h2>
+    {{#with (mostrarInscritosCursos cursoID)}}
+    <div>
+        <table>
+            <tr>
+                <th>Id Curso</th>
+                <th>Nombre del curso</th>
+                <th>Cantidad de estudiantes</th>
+                <th></th>
+
+            </tr>
+            {{#each this}}
+            <tr>
+                <th>{{this.id}}</th>
+                <th>{{this.nombre}}</th>
+                <th>{{this.cantidad}}</th>
+                <th>
+                    <form action="" method="post">
+                        <input name="cursoID" type="hidden" value="{{this.id}}">
+                        <button>cerrar</button>
+                    </form>
+                </th>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    {{/with}}
+
+</div>
