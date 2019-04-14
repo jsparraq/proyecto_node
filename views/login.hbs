@@ -1,11 +1,11 @@
-{{#menuInteresado cedula}}
+{{#menuInteresado tipoSeccion}}
 <div>
     <form action="/cursos" method="post">
         <button>Visualizar Cursos</button>
     </form>
 </div>
 {{/menuInteresado}}
-{{#menuAspirante cedula}}
+{{#menuAspirante tipoSeccion}}
 <div>
     <form action="/incribir" method="post">
         <button>Inscribir</button>
@@ -17,7 +17,7 @@
     </form>
 </div>
 {{/menuAspirante}}
-{{#menuCoordinador cedula}}
+{{#menuCoordinador tipoSeccion}}
 <div>
     <form action="/cursos" method="post">
         <button>Visualizar Cursos</button>
@@ -44,6 +44,6 @@
     </form>
 </div>
 {{/menuCoordinador}}
-{{#menuSinRegistro cedula}}
-<h3>No estas registrado</h3>
+{{#menuSinRegistro tipoSeccion}}
+<h3>Fallo al ingresar</h3>
 {{/menuSinRegistro}}

@@ -2,7 +2,7 @@
     <h2>
         Estudiantes que han escrito
     </h2>
-    {{#with (mostrarInscritosCursos cursoID)}}
+    {{#with (mostrarCursos cursos)}}
     <div>
         <table>
             <tr>
@@ -18,7 +18,7 @@
                 <th>{{this.nombre}}</th>
                 <th>{{this.cantidad}}</th>
                 <th>
-                    <form action="" method="post">
+                    <form action="/cerrar" method="post">
                         <input name="cursoID" type="hidden" value="{{this.id}}">
                         <button>cerrar</button>
                     </form>

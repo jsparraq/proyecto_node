@@ -34,5 +34,8 @@
         "modalidad": "Virtual",
         "intensidad": 55,
         "estado": "cerrado"
+    },
+    {
+        "estado": "disponible"
     }
 ]
