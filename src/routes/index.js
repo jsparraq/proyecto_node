@@ -114,8 +114,6 @@ app.post('/registro', (req, res) => {
             mensaje: true
         });
     });
-
-
 });
 
 app.post('/modificarUsuario', (req, res) => {
@@ -177,7 +175,6 @@ app.post('/cursos', (req, res) => {
             detalle
         });
     });
-
 });
 
 app.post('/login', (req, res) => {
@@ -247,11 +244,10 @@ app.post('/cerrarRespuesta', (req, res) => {
             return console.log('Error al buscar el usuario');
         }
         if (resultado.tipo === 'docente') {
-            Curso.findOneAndUpdate({ id: req.body.cursoID }, { $set: { 'docenteID': req.body.cedula }, $set: { 'estado': 'cerrado' } }, (err, resultado) => {
+            Curso.findOneAndUpdate({ id: req.body.cursoID }, { $set: { 'docenteID': resultado.cedula, 'estado': 'cerrado' } }, (err, resultado) => {
                 if (err) {
                     return console.log('Error al buscar el curso');
                 }
-                console.log(resultado);
                 return res.render('cerrarRespuesta', {
                     mensaje: true
                 });
@@ -263,6 +259,7 @@ app.post('/cerrarRespuesta', (req, res) => {
         }
     })
 });
+
 app.post('/cerrar', (req, res) => {
     return res.render('cerrar', {
         cursoID: parseInt(req.body.cursoID),
@@ -299,10 +296,6 @@ app.post('/eliminar', (req, res) => {
             });
         });
     });
-
-
-
-
 });
 
 app.post('/crear', (req, res) => {
@@ -332,8 +325,37 @@ app.post('/crearCurso', (req, res) => {
             mensaje: true
         });
     });
+});
 
+app.get('/infoCursos', (req, res) => {
+    Curso.find({ 'docenteID': req.session.cedula }).exec((err, respuesta) => {
+        if (err) {
+            return console.log('Error al buscar los Cursos');
+        }
+        return res.render('infoCursos', {
+            cursos: respuesta
+        });
+    });
+});
 
+app.post('/infoEstudiantes', (req, res) => {
+    Inscripcion.find({ 'cursoID': req.body.cursoID }).exec((err, respuesta) => {
+        if (err) {
+            return console.log('Error al buscar las inscripciones');
+        }
+        let estudiantes = [];
+        respuesta.forEach((estudianteAuxiliar) => {
+            Usuario.findOne({'cedula': estudianteAuxiliar.cedula}).exec((err, usuario) => {
+                if (err) {
+                    return console.log('Error al buscar los usuarios');
+                }
+                estudiantes.push(usuario)
+            });
+        });
+        return res.render('infoEstudiantes', {
+            estudiantes
+        });
+    });
 });
 
 app.get('*', (req, res) => {

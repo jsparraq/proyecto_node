@@ -17,6 +17,13 @@
     </form>
 </div>
 {{/menuAspirante}}
+{{#menuDocente tipoSeccion}}
+<div>
+    <form action="/infoCursos" method="get">
+        <button>Información de mis cursos</button>
+    </form>
+</div>
+{{/menuDocente}}
 {{#menuCoordinador tipoSeccion}}
 <div>
     <form action="/cursos" method="post">

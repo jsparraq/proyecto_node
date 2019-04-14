@@ -1,0 +1,30 @@
+    <h2>
+        Mis Cursos:
+    </h2>
+    <div>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Valor</th>
+                <th>Intensidad</th>
+                <th>Modalidad</th>
+                <th>Ver info estudiantes</th>
+            </tr>
+            {{#each cursos}}
+            <tr>
+                <th>{{this.nombre}}</th>
+                <th>{{this.descripcion}}</th>
+                <th>{{this.valor}}</th>
+                <th>{{this.intensidad}}</th>
+                <th>{{this.modalidad}}</th>
+                <th>
+                    <form action="/infoEstudiantes" method="post">
+                        <input name="cursoID" type="hidden" value="{{this.id}}">
+                        <button type="submit">Ver estudiantes</button>
+                    </form>
+                </th>
+            </tr>
+            {{/each}}
+        </table>
+    </div>

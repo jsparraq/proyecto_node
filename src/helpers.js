@@ -75,9 +75,6 @@ hbs.registerHelper('mostrarAsignacion', (mensaje, cedula, options) => {
         } else {
             return 'No se pudo cerrar el curos ya que no se le asigno un profesor valido';
         }
-
-
-
 });
 
 hbs.registerHelper('menuCoordinador', (tipoSeccion, options) => {
@@ -92,6 +89,15 @@ hbs.registerHelper('menuCoordinador', (tipoSeccion, options) => {
 hbs.registerHelper('menuAspirante', (tipoSeccion, options) => {
 
     if (tipoSeccion === 'aspirante') {
+        return options.fn(this);
+    } else {
+        return options.inverse(this);
+    }
+});
+
+hbs.registerHelper('menuDocente', (tipoSeccion, options) => {
+
+    if (tipoSeccion === 'docente') {
         return options.fn(this);
     } else {
         return options.inverse(this);

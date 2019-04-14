@@ -1,23 +1,21 @@
     <h2>
-        Estudiantes inscritos al curso con id {{cursoID}}:
+        Estudiantes:
     </h2>
-    {{#with (mostrarCursos usuarios)}}
     <div>
         <table>
             <tr>
-                <th>Nombre</th>
                 <th>Cedula</th>
+                <th>Nombre</th>
                 <th>Correo</th>
                 <th>Telefono</th>
             </tr>
-            {{#each this}}
+            {{#each estudiantes}}
             <tr>
-                <th>{{this.nombre}}</th>
                 <th>{{this.cedula}}</th>
+                <th>{{this.nombre}}</th>
                 <th>{{this.correo}}</th>
                 <th>{{this.telefono}}</th>
             </tr>
             {{/each}}
         </table>
     </div>
-    {{/with}}
