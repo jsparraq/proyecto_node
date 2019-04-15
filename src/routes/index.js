@@ -344,12 +344,19 @@ app.post('/infoEstudiantes', (req, res) => {
             return console.log('Error al buscar las inscripciones');
         }
         let estudiantes = [];
+        let itemsProcessed = 0;
         respuesta.forEach((estudianteAuxiliar) => {
             Usuario.findOne({'cedula': estudianteAuxiliar.cedula}).exec((err, usuario) => {
                 if (err) {
                     return console.log('Error al buscar los usuarios');
                 }
-                estudiantes.push(usuario)
+                estudiantes.push(usuario);
+                itemsProcessed++;
+                if(itemsProcessed === respuesta.length) {
+                    return res.render('infoEstudiantes', {
+                        estudiantes
+                    });
+                }
             });
         });
         return res.render('infoEstudiantes', {
