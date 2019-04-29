@@ -32,6 +32,9 @@ const cursoSchema = new Schema({
     },
     docenteID :{
         type: Number
+    },
+    foto:{
+        type:Buffer
     }
 });
 

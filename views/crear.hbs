@@ -2,7 +2,7 @@
 <div>
     <h1>Crear curso</h1>
 
-    <form action="/crearCurso" method="post">
+    <form action="/crearCurso" method="post" enctype="multipart/form-data">
         <p>Nombre</p>
         <input type="text" name="nombre" required>
         <p>Id</p>
@@ -19,6 +19,9 @@
             <option value="virtual">Virtual</option>
             <option value="presencial">Presencial</option>
         </select>
+        <p>Foto del Curso</p>
+        <input type="file" accept="image/*" name="foto">
+        <br><br>
         <button>Crear</button>
     </form>
 </div>

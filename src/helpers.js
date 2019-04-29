@@ -24,6 +24,11 @@ hbs.registerHelper('crearCurso', (mensaje) => {
 hbs.registerHelper('mostrarCursos', (cursos) => {
 
     if (cursos) {
+        cursos.forEach(curso => {
+            if (curso.foto) {
+                curso.foto = curso.foto.toString('base64');
+            }
+        });
         return cursos;
 
     } else {
@@ -69,12 +74,12 @@ hbs.registerHelper('asignarDocente', (cedula, options) => {
 });
 
 hbs.registerHelper('mostrarAsignacion', (mensaje, cedula, options) => {
- 
-        if (mensaje) {
-            return 'El curso fue cerrado satisfactoriamente';
-        } else {
-            return 'No se pudo cerrar el curos ya que no se le asigno un profesor valido';
-        }
+
+    if (mensaje) {
+        return 'El curso fue cerrado satisfactoriamente';
+    } else {
+        return 'No se pudo cerrar el curos ya que no se le asigno un profesor valido';
+    }
 });
 
 hbs.registerHelper('menuCoordinador', (tipoSeccion, options) => {

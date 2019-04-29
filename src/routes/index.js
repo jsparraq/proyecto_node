@@ -1,4 +1,5 @@
 require('../helpers');
+require('../config/config');
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -8,12 +9,15 @@ const Usuario = require('../models/usuario');
 const Curso = require('../models/curso');
 const Inscripcion = require('../models/inscripciones');
 const bcrypt = require('bcrypt');
-
+let multer = require('multer');
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const directorioViews = path.join(__dirname, '../../views');
 
 app.set('view engine', 'hbs');
 app.set('views', directorioViews);
+
 
 app.get('/', (req, res) => {
     res.render('index');
@@ -84,7 +88,6 @@ app.post('/listaCurso', (req, res) => {
             if (err) {
                 return console.log('Error al buscar los Usuarios');
             }
-            console.log(respuesta)
             res.render('listaCurso', {
                 usuarios: respuesta
             });
@@ -92,7 +95,16 @@ app.post('/listaCurso', (req, res) => {
     });
 });
 
-app.post('/registro', (req, res) => {
+
+
+
+let upload = multer({
+    limits: {
+        fileSize: 10000000
+    }
+});
+
+app.post('/registro', upload.single('foto'), (req, res) => {
 
     let usuario = new Usuario({
         cedula: parseInt(req.body.cedula),
@@ -100,8 +112,16 @@ app.post('/registro', (req, res) => {
         nombre: req.body.nombre,
         correo: req.body.correo,
         telefono: parseInt(req.body.telefono),
-        tipo: req.body.tipo
+        tipo: req.body.tipo,
+        foto: req.file.buffer
     });
+
+    const msg = {
+        to: req.body.correo,
+        from: 'szeag@unal.edu.co',
+        subject: 'Bienvenido',
+        text: 'Bienvenido a la página de Node.JS'
+    };
 
     usuario.save((err, resultado) => {
         if (err) {
@@ -110,6 +130,8 @@ app.post('/registro', (req, res) => {
                 mensaje: false
             });
         }
+        sgMail.send(msg);
+
         res.render('registro', {
             mensaje: true
         });
@@ -197,9 +219,13 @@ app.post('/login', (req, res) => {
         req.session.tipo = resultado.tipo;
         req.session.nombre = resultado.nombre;
         req.session.cedula = resultado.cedula;
-
+        let foto = '';
+        if (resultado.foto) {
+            foto = resultado.foto.toString('base64');
+        }
         return res.render('login', {
-            tipoSeccion: req.session.tipo
+            tipoSeccion: req.session.tipo,
+            foto: foto
         })
 
     });
@@ -239,15 +265,26 @@ app.post('/inscrito', (req, res) => {
 });
 
 app.post('/cerrarRespuesta', (req, res) => {
+
+
+
     Usuario.findOne({ cedula: req.body.cedula }, (err, resultado) => {
         if (err) {
             return console.log('Error al buscar el usuario');
         }
+        const msg = {
+            to: resultado.correo,
+            from: 'szeag@unal.edu.co',
+            subject: 'Cerrado',
+            text: 'El curso fue cerrado satisfactoriamente'
+        };
         if (resultado.tipo === 'docente') {
             Curso.findOneAndUpdate({ id: req.body.cursoID }, { $set: { 'docenteID': resultado.cedula, 'estado': 'cerrado' } }, (err, resultado) => {
                 if (err) {
                     return console.log('Error al buscar el curso');
                 }
+                
+        sgMail.send(msg);
                 return res.render('cerrarRespuesta', {
                     mensaje: true
                 });
@@ -302,7 +339,7 @@ app.post('/crear', (req, res) => {
     res.render('crear');
 });
 
-app.post('/crearCurso', (req, res) => {
+app.post('/crearCurso', upload.single('foto'), (req, res) => {
     let curso = new Curso({
         nombre: req.body.nombre,
         id: parseInt(req.body.id),
@@ -311,7 +348,8 @@ app.post('/crearCurso', (req, res) => {
         modalidad: req.body.modalidad,
         intensidad: parseInt(req.body.intensidad),
         estado: 'disponible',
-        docenteID: null
+        docenteID: null,
+        foto: req.file.buffer
     });
 
     curso.save((err, resultado) => {
@@ -346,21 +384,22 @@ app.post('/infoEstudiantes', (req, res) => {
         let estudiantes = [];
         let itemsProcessed = 0;
         respuesta.forEach((estudianteAuxiliar) => {
-            Usuario.findOne({'cedula': estudianteAuxiliar.cedula}).exec((err, usuario) => {
+
+            itemsProcessed++;
+            Usuario.findOne({ 'cedula': estudianteAuxiliar.cedula }).exec((err, usuario) => {
                 if (err) {
                     return console.log('Error al buscar los usuarios');
                 }
-                estudiantes.push(usuario);
-                itemsProcessed++;
-                if(itemsProcessed === respuesta.length) {
+
+                estudiantes.push(usuario)
+
+                if (itemsProcessed === respuesta.length) {
+
                     return res.render('infoEstudiantes', {
                         estudiantes
                     });
                 }
             });
-        });
-        return res.render('infoEstudiantes', {
-            estudiantes
         });
     });
 });

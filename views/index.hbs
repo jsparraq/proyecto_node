@@ -1,7 +1,7 @@
 <div>
     <h1>Registro de Usuarios</h1>
 
-    <form action="/registro" method="post">
+    <form action="/registro" method="post" enctype="multipart/form-data">
         <p>Cedula</p>
         <input type="number" name="cedula">
         <p>Contraseña</p>
@@ -9,7 +9,7 @@
         <p>Nombre</p>
         <input type="text" name="nombre">
         <p>Correo</p>
-        <input type="email" name="correo">
+        <input type="email" name="correo" requiered>
         <p>Telefono</p>
         <input type="number" name="telefono">
         <p>Tipo</p>
@@ -17,6 +17,8 @@
             <option value="aspirante">Aspirante</option>
             <option value="interesado">Interesado</option>
         </select>
+        <p>Foto Perfil</p>
+        <input type="file" accept="image/*" name="foto">
         <br><br>
         <button>Registrar</button>
     </form>

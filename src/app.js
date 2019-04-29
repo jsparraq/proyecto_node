@@ -23,7 +23,6 @@ app.use(express.static(directorioPublico));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(require('./routes/index'));
-console.log(process.env.URLDB);
 
 mongoose.connect(process.env.URLDB, { useNewUrlParser: true }, (err, respuesta) => {
     if (err) {

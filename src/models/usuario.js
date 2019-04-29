@@ -17,7 +17,8 @@ const usuarioSchema = new Schema({
     },
     correo: {
         type: String,
-        require: true
+        require: true,
+        trim: true
     },
     telefono: {
         type: Number,
@@ -26,6 +27,9 @@ const usuarioSchema = new Schema({
     tipo: {
         type: String,
         require: true
+    },
+    foto: {
+        type: Buffer
     }
 });
 
